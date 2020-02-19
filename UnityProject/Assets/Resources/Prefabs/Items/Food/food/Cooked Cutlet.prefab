@@ -32,7 +32,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   leavings: {fileID: 0}
-  NutrientsHealAmount: 15
+  NutrientsHealAmount: 30
 --- !u!1001 &6128081887975217483
 PrefabInstance:
   m_ObjectHideFlags: 0

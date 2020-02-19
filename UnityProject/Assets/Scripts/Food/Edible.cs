@@ -11,7 +11,7 @@ public class Edible : NetworkBehaviour, IClientInteractable<HandActivate>, IClie
 	public GameObject leavings;
 	protected bool isDrink = false;
 
-	public int NutrientsHealAmount = 25;
+	public int NutrientsHealAmount = 50;
 
 	private void Awake()
 	{
@@ -20,7 +20,6 @@ public class Edible : NetworkBehaviour, IClientInteractable<HandActivate>, IClie
 
 	public virtual void TryEat()
 	{
-		//FIXME: PNA Cmd is being used to heal the player instead of heal hunger for the TDM
 		PlayerManager.LocalPlayerScript.playerNetworkActions.CmdEatFood(gameObject,
             UIManager.Hands.CurrentSlot.NamedSlot, isDrink);
 	}
