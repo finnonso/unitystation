@@ -7,6 +7,7 @@ using Mirror;
 using Random = UnityEngine.Random;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class SoundManager : MonoBehaviour
 {
@@ -109,6 +110,19 @@ public class SoundManager : MonoBehaviour
 
 	private void Init()
 	{
+		//Load instrument sounds
+		GameObject instrumentsObject = gameObject.transform.Find("Instruments").gameObject;
+		GameObject original = instrumentsObject.transform.Find("OriginalPiano").gameObject;
+		var notes = Resources.LoadAll<AudioClip>("Sounds/instruments/piano");
+
+		foreach (AudioClip note in notes)
+		{
+			GameObject newObject = Instantiate(original, instrumentsObject.transform);
+			newObject.name = "Piano" + note.name;
+			AudioSource auso = newObject.GetComponent<AudioSource>();
+			auso.clip = note;
+		}
+
 		//Mute Music Preference
 		if (PlayerPrefs.HasKey(PlayerPrefKeys.MuteMusic))
 		{
@@ -152,6 +166,7 @@ public class SoundManager : MonoBehaviour
 				sounds.Add(audioSource.name, audioSource);
 			}
 		}
+
 	}
 
 	/// <summary>
